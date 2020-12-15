@@ -22,6 +22,26 @@ const db = firebase.firestore();
 // Simplified user type for referencing users
 type User = Pick<firebase.User, 'uid' | 'email'>;
 
+export type Photo = {
+  filename : string;  // photo1
+  thumbnail : string; //photo1_m
+  extension : string; // .jpg
+  path : string;      // album.pathFolder + filename + extension
+  description : string;
+  dateCreated : firebase.firestore.Timestamp;
+  location : PhotoInAlbum;
+};
+
+export type Album = {
+  name : string;
+  pathFolder: string;  
+};
+
+export type PhotoInAlbum = {
+  album : Album;
+  position : number;
+}
+
 // // Holds information about a review
 // export type Review = {
 //   by: User;
