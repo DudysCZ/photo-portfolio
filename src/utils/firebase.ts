@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-// import { Winner } from '../components/Board';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -42,33 +41,18 @@ export type PhotoInAlbum = {
   position : number;
 }
 
-// // Holds information about a review
-// export type Review = {
-//   by: User;
-//   stars: number;
-//   description?: string;
-// };
-
 // // We can simply cast this type to narrow our collection to Review type
 // // Safer way would be to use .withConverter() method
-// export const reviewsCollection = db.collection(
-//   'reviews',
-// ) as firebase.firestore.CollectionReference<Review>;
+export const photosCollection = db.collection(
+  'photos',
+) as firebase.firestore.CollectionReference<Photo>;
+
+export const albumsCollection = db.collection(
+  'albums',
+) as firebase.firestore.CollectionReference<Album>;
 
 // Helper to get current time in Timestamp
 export const timestampNow = firebase.firestore.Timestamp.now;
-
-// // Holds information about finished match
-// export type Match = {
-//   by: User;
-//   winner: Winner;
-//   date: firebase.firestore.Timestamp;
-// };
-
-// // TODO: Collection ref object for matches collection
-// export const matchesCollection = db.collection(
-//   'matches',
-// ) as firebase.firestore.CollectionReference<Match>;
 
 // Hook providing logged in user information
 export const useLoggedInUser = () => {
