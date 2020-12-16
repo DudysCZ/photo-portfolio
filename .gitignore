@@ -45,3 +45,6 @@ sketch
 
 .eslintcache
 .cache
+
+# JetBrains IDE files
+.idea/
