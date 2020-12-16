@@ -25,10 +25,13 @@ export type Photo = {
   filename : string;  // photo1
   thumbnail : string; //photo1_m
   extension : string; // .jpg
-  path : string;      // album.pathFolder + filename + extension
-  description : string;
+  path : string;  // album.pathFolder + filename + extension
+  caption : string;
   dateCreated : firebase.firestore.Timestamp;
-  location : PhotoInAlbum;
+  album : Album;
+  // -------------
+  photo : string;
+  number : number;
 };
 
 export type Album = {
@@ -36,10 +39,6 @@ export type Album = {
   pathFolder: string;  
 };
 
-export type PhotoInAlbum = {
-  album : Album;
-  position : number;
-}
 
 // // We can simply cast this type to narrow our collection to Review type
 // // Safer way would be to use .withConverter() method
