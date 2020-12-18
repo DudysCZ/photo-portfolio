@@ -1,47 +1,78 @@
-import React, { FC, useContext, useEffect, useState }  from 'react';
-import { Photo, photosCollection } from '../utils/firebase';
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import ImageGallery from 'react-image-gallery';
+import React, { FC } from 'react';
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route
+} from 'react-router-dom';
 
-import "react-image-gallery/styles/css/image-gallery.css";
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import Container from '@material-ui/core/Container';
 
-export type Img = {
-    original: string;
-    description: string;
-    thumbnail: string;
-};
+import Album from './Album';
 
-function getImagesToShow(photos : Photo[]) : Img[] {
-    let images : Img[] = [];
-    photos.forEach(photo => {
-        let img : Img = {
-            // original : photo.album.pathFolder + photo.filename + photo.extension,
-            original : process.env.PUBLIC_URL + '/photos/portret/' + photo.filename + photo.extension,
-            description : photo.caption,
-            thumbnail : process.env.PUBLIC_URL + '/photos/portret/' + photo.thumbnail + photo.extension,
-            // thumbnail : photo.album.pathFolder + photo.thumbnail + photo.extension
-        }
-        images.push(img)
-    });
-    return images;
-}
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    menuButton: {
+      marginRight: theme.spacing(2)
+    },
+    link: {
+      textDecoration: 'none'
+    },
+  }));
 
 const Galerie: FC = () => {
-    const [error, setError] = useState<string>();
-    const [photos, setPhotos] = useState<Photo[]>([]);
-
-    useEffect(() => {
-        photosCollection
-          .get()
-          .then(response => setPhotos(response.docs.map(d => d.data())))
-          .catch(err => setError(err.message));       
-
-      }, []);
-
-    console.log(photos);   
-
-    return <ImageGallery items={getImagesToShow(photos)} />;      
-};
+    const classes = useStyles();
+  
+    return (
+        <Router>
+          <AppBar color="primary" position="static" variant="outlined">
+            <Toolbar className={classes.toolbar}>
+              <div>
+                <Link className={classes.link} to="/galerie/portret">
+                  <Button className={classes.menuButton}>
+                    Portrét
+                  </Button>
+                </Link>
+                <Link className={classes.link} to="/galerie/architektura">
+                  <Button className={classes.menuButton}>
+                    Architektura
+                  </Button>
+                </Link>
+                <Link className={classes.link} to="/galerie/ulice">
+                  <Button className={classes.menuButton}>
+                    Ulice
+                  </Button>
+                </Link>
+                <Link className={classes.link} to="/galerie/zeleznice">
+                  <Button className={classes.menuButton}>
+                    Železnice
+                  </Button>                  
+                </Link>
+                <Link className={classes.link} to="/galerie/svatby">
+                  <Button className={classes.menuButton}>
+                    Svatby
+                  </Button>
+                </Link>
+              </div>
+            </Toolbar>
+          </AppBar>
+          <main className="App">
+          <Container maxWidth="sm">
+            <Switch>
+              <Route path="/galerie/:id" exact component={Album} />
+            </Switch>
+          </Container>
+        </main>
+      </Router>
+    );
+  };
 
 export default Galerie;

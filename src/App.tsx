@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 import Domu from './pages/Domu';
 import OMne from './pages/OMne';
 import Galerie from './pages/Galerie';
+import Album from './pages/Album';
 import Kniha from './pages/Kniha';
 import Nenalezeno from './pages/Nenalezeno';
 
@@ -26,6 +27,7 @@ const App: FC = () => {
               <Route path="/" exact component={Domu} />
               <Route path="/o_mne" exact component={OMne} />
               <Route path="/galerie" exact component={Galerie} />
+              <Route path="/galerie/:id" children={<Album />} exact component={Album} />
               <Route path="/kniha" exact component={Kniha} />
               <Route component={Nenalezeno} />
             </Switch>
