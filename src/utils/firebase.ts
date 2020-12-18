@@ -33,7 +33,7 @@ export type Photo = {
 
 export type Album = {
   name : string;
-  pathFolder: string;  
+  pathFolder: string;
 };
 
 export type PhotoInAlbum = {
@@ -50,6 +50,21 @@ export const photosCollection = db.collection(
 export const albumsCollection = db.collection(
   'albums',
 ) as firebase.firestore.CollectionReference<Album>;
+
+
+
+//Kniha
+export type Post = {
+  content: string;
+  author: string;
+  date: firebase.firestore.Timestamp;
+};
+
+export const postsCollection = db.collection(
+    'posts',
+).orderBy('date', 'desc') as firebase.firestore.CollectionReference<Post>;
+
+
 
 // Helper to get current time in Timestamp
 export const timestampNow = firebase.firestore.Timestamp.now;
