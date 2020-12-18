@@ -8,7 +8,7 @@ const Domu: FC = () => {
         <Grid container wrap="wrap" spacing={3}>
             <Grid item xs={12}>
                 <Typography variant="h2" gutterBottom>
-                    Portfolio<br />Milana Przybyla
+                    Portfolio<br />Milan Przybyla
                 </Typography>
             </Grid>
             <Grid item xs={12}>
