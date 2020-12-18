@@ -4,48 +4,44 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import ImageGallery from 'react-image-gallery';
 
-
-import photo1 from '../photos/portret/po61.jpg';
-import photo1m from '../photos/portret/po61m.jpg';
-import photo2 from '../photos/portret/po62.jpg';
-import photo2m from '../photos/portret/po62m.jpg';
-import photo3 from '../photos/portret/po63.jpg';
-import photo3m from '../photos/portret/po63m.jpg';
-
 import "react-image-gallery/styles/css/image-gallery.css";
 
+export type Img = {
+    original: string;
+    description: string;
+    thumbnail: string;
+};
+
+function getImagesToShow(photos : Photo[]) : Img[] {
+    let images : Img[] = [];
+    photos.forEach(photo => {
+        let img : Img = {
+            // original : photo.album.pathFolder + photo.filename + photo.extension,
+            original : process.env.PUBLIC_URL + '/photos/portret/' + photo.filename + photo.extension,
+            description : photo.caption,
+            thumbnail : process.env.PUBLIC_URL + '/photos/portret/' + photo.thumbnail + photo.extension,
+            // thumbnail : photo.album.pathFolder + photo.thumbnail + photo.extension
+        }
+        images.push(img)
+    });
+    return images;
+}
+
 const Galerie: FC = () => {
-    // const [error, setError] = useState<string>();
-    // const [photos, setPhotos] = useState<Photo[]>([]);
+    const [error, setError] = useState<string>();
+    const [photos, setPhotos] = useState<Photo[]>([]);
 
-    // useEffect(() => {
-    //     photosCollection
-    //       .get()
-    //       .then(response => setPhotos(response.docs.map(d => d.data())))
-    //       .catch(err => setError(err.message));
-    //   }, []);
-    
-    const [isOpen, setIsOpen] = useState(false);
-    const photos = [{
-            original: photo1,
-            description: "Viñales, Pinar del Río, Cuba",
-            thumbnail: photo1m,
-        }, {
-            original: photo2,
-            description: "La Habana, Cuba",
-            subcaption: "Photo by Gerardo Sanchez on Unsplash",
-            thumbnail: photo2m,
-        }, {
-            original: photo3,
-            description: "Woman smoking a tobacco",
-            subcaption: "Photo by Hannah Cauhepe on Unsplash",
-            thumbnail: photo3m,
-    }];
-    
-    console.log(process.env.PHOTOS_FOLDER);
+    useEffect(() => {
+        photosCollection
+          .get()
+          .then(response => setPhotos(response.docs.map(d => d.data())))
+          .catch(err => setError(err.message));       
 
-    return <ImageGallery items={photos} />;
-      
+      }, []);
+
+    console.log(photos);   
+
+    return <ImageGallery items={getImagesToShow(photos)} />;      
 };
 
 export default Galerie;
