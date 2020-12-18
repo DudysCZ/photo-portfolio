@@ -1,23 +1,47 @@
-import React, { FC } from 'react';
-
+import React, { FC, useContext, useEffect, useState }  from 'react';
+import { Photo, photosCollection } from '../utils/firebase';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import ImageGallery from 'react-image-gallery';
+
+import "react-image-gallery/styles/css/image-gallery.css";
+
+export type Img = {
+    original: string;
+    description: string;
+    thumbnail: string;
+};
+
+function getImagesToShow(photos : Photo[]) : Img[] {
+    let images : Img[] = [];
+    photos.forEach(photo => {
+        let img : Img = {
+            // original : photo.album.pathFolder + photo.filename + photo.extension,
+            original : process.env.PUBLIC_URL + '/photos/portret/' + photo.filename + photo.extension,
+            description : photo.caption,
+            thumbnail : process.env.PUBLIC_URL + '/photos/portret/' + photo.thumbnail + photo.extension,
+            // thumbnail : photo.album.pathFolder + photo.thumbnail + photo.extension
+        }
+        images.push(img)
+    });
+    return images;
+}
 
 const Galerie: FC = () => {
-    return (
-        <Grid container wrap="wrap" spacing={3}>
-            <Grid item xs={12}>
-                <Typography variant="h2" gutterBottom>
-                    Galerie
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography variant="body1" gutterBottom>
-                    Obsah galerie
-                </Typography>
-            </Grid>
-        </Grid>
-    )
+    const [error, setError] = useState<string>();
+    const [photos, setPhotos] = useState<Photo[]>([]);
+
+    useEffect(() => {
+        photosCollection
+          .get()
+          .then(response => setPhotos(response.docs.map(d => d.data())))
+          .catch(err => setError(err.message));       
+
+      }, []);
+
+    console.log(photos);   
+
+    return <ImageGallery items={getImagesToShow(photos)} />;      
 };
 
 export default Galerie;
