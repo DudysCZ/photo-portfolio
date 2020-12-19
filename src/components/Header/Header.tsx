@@ -47,7 +47,7 @@ const Header = () => {
     const classes = useStyles();
 
     return (
-        <AppBar position={"static"} color={"transparent"}>
+        <AppBar position={"static"} color={"transparent"} elevation={0}>
             <Toolbar id="back-to-top-anchor" className={classes.toolbar}>
                 <Container maxWidth="lg">
                     <Grid container spacing={3}>
@@ -83,7 +83,7 @@ const Header = () => {
                     </Grid>
                 </Container>
                 <BackToTop>
-                    <Fab color="secondary" size="large" aria-label="scroll back to top">
+                    <Fab size="large">
                         <KeyboardArrowUp />
                     </Fab>
                 </BackToTop>

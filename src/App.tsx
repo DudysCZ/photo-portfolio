@@ -20,14 +20,14 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#ffc107',
-      light: '#fff350',
-      dark: '#c79100',
+      main: '#2196f3',
+      light: '#6ec6ff',
+      dark: '#0069c0',
     },
     secondary: {
-      main: '#ffa000',
-      light: '#ffd149',
-      dark: '#c67100',
+      main: '#0097a7',
+      light: '#56c8d8',
+      dark: '#006978',
     },
   },
 });
@@ -36,9 +36,8 @@ const App: FC = () => {
   return (
       <MuiThemeProvider theme={theme}>
         <Router>
-          <Header/>
-
           <main className="App">
+            <Header/>
             <Container maxWidth="lg">
               <Switch>
                 <Route path="/" exact component={Domu} />

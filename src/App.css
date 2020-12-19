@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  background-color: #211F1F;
+  background: rgb(33,31,31);
+  background: linear-gradient(90deg, rgba(33,31,31,1) 0%, rgba(0,38,46,1) 50%, rgba(33,31,31,1) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,4 +9,8 @@
   font-size: calc(10px + 2vmin);
   color: #eeeeee;
   flex-grow: 1;
+}
+
+.image-gallery-content:not(.fullscreen) .image-gallery-image {
+  max-height: calc(100vh - 350px) !important;
 }
