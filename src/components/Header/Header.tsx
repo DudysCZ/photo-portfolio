@@ -25,9 +25,7 @@ const navLinks = [
 
 
 
-const useStyles = makeStyles(theme =>{
-    console.log(theme);
-    return ({
+const useStyles = makeStyles(theme => ({
     toolbar: {
         minHeight: 100,
         paddingTop: theme.spacing(3),
@@ -43,7 +41,7 @@ const useStyles = makeStyles(theme =>{
         textTransform: `uppercase`,
         color: theme.palette.primary.contrastText,
     }
-})});
+}));
 
 const Header = () => {
     const classes = useStyles();
@@ -58,7 +56,7 @@ const Header = () => {
                         <Grid item xs={6} sm={4}>
                             <ButtonBase focusRipple>
                                 <Link to="/">
-                                    <img src="logo2.png" alt="Logo" style={{
+                                    <img src={process.env.PUBLIC_URL + "/logo2.png"} alt="Logo" style={{
                                         maxWidth: "320px",
                                         width: "100%",
                                         maxHeight: "100%",

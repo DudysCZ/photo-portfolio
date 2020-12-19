@@ -16,21 +16,7 @@ import {Add} from "@material-ui/icons";
 import {makeStyles} from "@material-ui/core/styles";
 import ScrollToHandler from "../components/ScrollToHandler";
 
-const useStyles = makeStyles(theme => ({
-    fab: {
-        position: 'fixed',
-        bottom: theme.spacing(5),
-        [theme.breakpoints.down('sm')]: {
-            right: theme.spacing(5),
-        },
-        [theme.breakpoints.up('md')]: {
-            right: theme.spacing(10),
-        },
-    },
-}));
-
 const Kniha: FC = () => {
-    const classes = useStyles();
     const [error, setError] = useState<string>();
 
     const [posts, setPosts] = useState<Post[]>([]);

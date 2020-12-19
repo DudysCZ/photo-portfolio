@@ -45,7 +45,7 @@ const ScrollToHandler: FC<Handler> = ({children, selector, position, zoomIn}) =>
 
     return (
         <Zoom in={zoomIn ?? true}>
-            <div onClick={handleClick} className={position == "left" ? classes.positionLeft : classes.positionRight}>
+            <div onClick={handleClick} className={position === "left" ? classes.positionLeft : classes.positionRight}>
                 {children}
             </div>
         </Zoom>
