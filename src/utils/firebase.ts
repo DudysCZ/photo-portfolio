@@ -62,7 +62,7 @@ export type Post = {
 
 export const postsCollection = db.collection(
     'posts',
-).orderBy('date', 'desc') as firebase.firestore.CollectionReference<Post>;
+).orderBy('date', 'desc').limit(100) as firebase.firestore.CollectionReference<Post>;
 
 
 
