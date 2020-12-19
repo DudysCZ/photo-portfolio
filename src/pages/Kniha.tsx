@@ -13,7 +13,6 @@ import {Post, postsCollection, timestampNow} from "../utils/firebase";
 import firebase from "firebase";
 import PostComponent from "../components/Post";
 import {Add} from "@material-ui/icons";
-import {makeStyles} from "@material-ui/core/styles";
 import ScrollToHandler from "../components/ScrollToHandler";
 
 const Kniha: FC = () => {
