@@ -10,6 +10,7 @@ import Domu from './pages/Domu';
 import OMne from './pages/OMne';
 import AlbumGalerie from './pages/AlbumGalerie';
 import Kniha from './pages/Kniha';
+import Import from './pages/Import';
 import Nenalezeno from './pages/Nenalezeno';
 
 import './App.css';
@@ -44,6 +45,7 @@ const App: FC = () => {
                 <Route path="/o_mne" exact component={OMne} />
                 <Route path="/galerie/:id" exact component={AlbumGalerie} />
                 <Route path="/kniha" exact component={Kniha} />
+                <Route path="/import" exact component={Import} />
                 <Route component={Nenalezeno} />
               </Switch>
             </Container>

@@ -27,7 +27,7 @@ export type Photo = {
   extension : string; // jpg
   caption : string;
   dateCreated : firebase.firestore.Timestamp;
-  album : Album;
+  album : string;
   position : number;
 };
 
