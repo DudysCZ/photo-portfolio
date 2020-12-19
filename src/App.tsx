@@ -26,7 +26,7 @@ const App: FC = () => {
             <Switch>
               <Route path="/" exact component={Domu} />
               <Route path="/o_mne" exact component={OMne} />
-              {/* <Route path="/galerie" exact component={Galerie} /> */}
+              <Route path="/galerie" exact component={Galerie} />
               <Route path="/galerie/:id" exact component={Album} />
               <Route path="/kniha" exact component={Kniha} />
               <Route component={Nenalezeno} />

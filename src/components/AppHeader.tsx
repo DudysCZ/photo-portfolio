@@ -18,7 +18,7 @@ import {Menu} from "@material-ui/icons";
 const navLinks = [
     { title: `Úvodní stránka`, path: `/` },
     { title: `O mně`, path: `/o_mne` },
-    { title: `Fotogalerie`, path: `/galerie/portret` },
+    { title: `Fotogalerie`, path: `/galerie` },
     { title: `Návštěvní kniha`, path: `/kniha` },
 ]
 
