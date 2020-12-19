@@ -24,20 +24,20 @@ const db = firebase.firestore();
 export type Photo = {
   filename : string;  // photo1
   thumbnail : string; //photo1_m
-  extension : string; // .jpg
-  path : string;  // album.pathFolder + filename + extension
+  extension : string; // jpg
   caption : string;
   dateCreated : firebase.firestore.Timestamp;
   album : Album;
   position : number;
-  // -------------
-  photo : string;
-  number : number;
 };
 
 export type Album = {
+  id : string;
   name : string;
   pathFolder: string;
+  position : number;
+  route: string;
+  ref: string;
 };
 
 
