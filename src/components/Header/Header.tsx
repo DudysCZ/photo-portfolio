@@ -7,14 +7,14 @@ import {
     Hidden,
     List,
     ListItem,
-    ListItemText,
+    ListItemText, useScrollTrigger,
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import {makeStyles} from "@material-ui/core/styles";
 import MenuDrawer from "./MenuDrawer";
-import BackToTop from "./BackToTop";
 import {KeyboardArrowUp} from "@material-ui/icons";
+import ScrollToHandler from "../ScrollToHandler";
 
 const navLinks = [
     // { title: `Úvodní stránka`, path: `/` },
@@ -25,7 +25,9 @@ const navLinks = [
 
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme =>{
+    console.log(theme);
+    return ({
     toolbar: {
         minHeight: 100,
         paddingTop: theme.spacing(3),
@@ -39,12 +41,14 @@ const useStyles = makeStyles(theme => ({
     linkText: {
         textDecoration: `none`,
         textTransform: `uppercase`,
-        color: `white`
+        color: theme.palette.primary.contrastText,
     }
-}));
+})});
 
 const Header = () => {
     const classes = useStyles();
+
+    const trigger = useScrollTrigger();
 
     return (
         <AppBar position={"static"} color={"transparent"} elevation={0}>
@@ -77,16 +81,16 @@ const Header = () => {
                         </Hidden>
                         <Hidden mdUp>
                             <Grid item xs={6} sm={8} style={{textAlign: "right"}}>
-                                <MenuDrawer navLinks={navLinks}></MenuDrawer>
+                                <MenuDrawer navLinks={navLinks}/>
                             </Grid>
                         </Hidden>
                     </Grid>
                 </Container>
-                <BackToTop>
+                <ScrollToHandler selector={"#back-to-top-anchor"} position={"left"} zoomIn={trigger}>
                     <Fab size="large">
                         <KeyboardArrowUp />
                     </Fab>
-                </BackToTop>
+                </ScrollToHandler>
             </Toolbar>
         </AppBar>
     );

@@ -5,15 +5,32 @@ import Grid from "@material-ui/core/Grid";
 import {
     Button,
     Card, CardActions,
-    CardContent,
+    CardContent, Fab,
     List,
     TextField
 } from "@material-ui/core";
 import {Post, postsCollection, timestampNow} from "../utils/firebase";
 import firebase from "firebase";
 import PostComponent from "../components/Post";
+import {Add} from "@material-ui/icons";
+import {makeStyles} from "@material-ui/core/styles";
+import ScrollToHandler from "../components/ScrollToHandler";
+
+const useStyles = makeStyles(theme => ({
+    fab: {
+        position: 'fixed',
+        bottom: theme.spacing(5),
+        [theme.breakpoints.down('sm')]: {
+            right: theme.spacing(5),
+        },
+        [theme.breakpoints.up('md')]: {
+            right: theme.spacing(10),
+        },
+    },
+}));
 
 const Kniha: FC = () => {
+    const classes = useStyles();
     const [error, setError] = useState<string>();
 
     const [posts, setPosts] = useState<Post[]>([]);
@@ -68,7 +85,7 @@ const Kniha: FC = () => {
                 </Card>
             </Grid>
             <Grid item xs={12}>
-                <Card>
+                <Card id="addNewPostContainer">
                     <CardContent>
                         <Typography variant="h6" gutterBottom>
                             Pridat příspěvek
@@ -96,6 +113,11 @@ const Kniha: FC = () => {
                         <Button size="large" color="primary" onClick={handleSubmit}>Odoslat</Button>
                     </CardActions>
                 </Card>
+                <ScrollToHandler selector={"#addNewPostContainer"} position={"right"}>
+                    <Fab size="large" color={"primary"}>
+                        <Add/>
+                    </Fab>
+                </ScrollToHandler>
             </Grid>
         </Grid>
     )

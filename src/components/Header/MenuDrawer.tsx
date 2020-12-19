@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     linkText: {
         textDecoration: `none`,
         textTransform: `uppercase`,
-        color: `black`
+        color: theme.palette.text.primary,
     },
     iconButton: {
         height: "100%",
