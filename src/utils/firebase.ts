@@ -19,7 +19,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 // Simplified user type for referencing users
-type User = Pick<firebase.User, 'uid' | 'email'>;
+// type User = Pick<firebase.User, 'uid' | 'email'>;
 
 export type Photo = {
   filename : string;  // photo1
