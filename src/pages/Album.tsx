@@ -42,11 +42,13 @@ const Album: FC = () => {
       }, []);
 
     return (
-      <Grid container wrap="wrap" spacing={3}>
+      <Grid container spacing={3}>
         <AlbumMenu />
-        <ImageGallery items={getImagesToShow(photos)} />
+        <Grid item xs={12}>
+            <ImageGallery items={getImagesToShow(photos)} />
+        </Grid>
       </Grid>
-    )          
+    )
 };
 
 export default Album;
