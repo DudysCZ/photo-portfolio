@@ -73,7 +73,7 @@ const Kniha: FC = () => {
                 <Card id="addNewPostContainer">
                     <CardContent>
                         <Typography variant="h6" gutterBottom>
-                            Pridat příspěvek
+                            Přidat příspěvek
                         </Typography>
                         <TextField
                             label="Jméno"
@@ -95,7 +95,7 @@ const Kniha: FC = () => {
                         />
                     </CardContent>
                     <CardActions>
-                        <Button size="large" color="primary" onClick={handleSubmit}>Odoslat</Button>
+                        <Button size="large" color="primary" onClick={handleSubmit}>Odeslat</Button>
                     </CardActions>
                 </Card>
                 <ScrollToHandler selector={"#addNewPostContainer"} position={"right"}>
