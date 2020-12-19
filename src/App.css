@@ -12,5 +12,5 @@
 }
 
 .image-gallery-content:not(.fullscreen) .image-gallery-image {
-  max-height: calc(100vh - 350px) !important;
+  max-height: calc(100vh - 465px) !important;
 }
