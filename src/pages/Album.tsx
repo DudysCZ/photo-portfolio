@@ -1,6 +1,5 @@
-import React, { FC, useContext, useEffect, useState }  from 'react';
+import React, { FC, useEffect, useState }  from 'react';
 import { Photo, photosCollection } from '../utils/firebase';
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import ImageGallery from 'react-image-gallery';
 import AlbumMenu from '../components/AlbumMenu'
@@ -30,14 +29,14 @@ function getImagesToShow(photos : Photo[]) : Img[] {
 
 const Album: FC = () => {
   
-    const [error, setError] = useState<string>();
+    // const [error, setError] = useState<string>();
     const [photos, setPhotos] = useState<Photo[]>([]);
 
     useEffect(() => {
         photosCollection
           .get()
           .then(response => setPhotos(response.docs.map(d => d.data())))
-          .catch(err => setError(err.message));       
+          // .catch(err => setError(err.message));       
 
       }, []);
 

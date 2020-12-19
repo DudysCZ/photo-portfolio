@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
 import {
-  BrowserRouter as Router,
   Link,
-  Switch,
-  Route
 } from 'react-router-dom';
 
 import AppBar from '@material-ui/core/AppBar';
