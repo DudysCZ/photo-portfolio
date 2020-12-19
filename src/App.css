@@ -12,5 +12,9 @@
 }
 
 .image-gallery-content:not(.fullscreen) .image-gallery-image {
-  max-height: calc(100vh - 465px) !important;
+  max-height: calc(100vh - 385px) !important;
+}
+.image-gallery-thumbnail-image {
+  max-height: 60px !important;
+  width: auto !important;
 }
