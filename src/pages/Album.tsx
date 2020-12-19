@@ -3,6 +3,7 @@ import { Photo, photosCollection } from '../utils/firebase';
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import ImageGallery from 'react-image-gallery';
+import AlbumMenu from '../components/AlbumMenu'
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
@@ -40,7 +41,12 @@ const Album: FC = () => {
 
       }, []);
 
-    return <ImageGallery items={getImagesToShow(photos)} />;      
+    return (
+      <Grid container wrap="wrap" spacing={3}>
+        <AlbumMenu />
+        <ImageGallery items={getImagesToShow(photos)} />
+      </Grid>
+    )          
 };
 
 export default Album;

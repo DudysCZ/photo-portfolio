@@ -19,7 +19,7 @@ import {KeyboardArrowUp} from "@material-ui/icons";
 const navLinks = [
     // { title: `Úvodní stránka`, path: `/` },
     { title: `O mně`, path: `/o_mne` },
-    { title: `Fotogalerie`, path: `/galerie` },
+    { title: `Fotogalerie`, path: `/galerie/portret` },
     { title: `Návštěvní kniha`, path: `/kniha` },
 ]
 
