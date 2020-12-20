@@ -9,6 +9,7 @@ import {
 import {Link} from "react-router-dom";
 import {makeStyles} from "@material-ui/core/styles";
 import {Menu} from "@material-ui/icons";
+import {useLoggedInUser} from "../../utils/firebase";
 
 const useStyles = makeStyles(theme => ({
     list: {
@@ -34,7 +35,9 @@ type Links = {
 const MenuDrawer: FC<Links> = ({navLinks}) => {
     const classes = useStyles();
 
+    const isLoggedIn = useLoggedInUser();
     const [state, setState] = useState<boolean>(false)
+
     return (
         <>
             <IconButton onClick={() => setState(true)} className={classes.iconButton}>
@@ -49,6 +52,13 @@ const MenuDrawer: FC<Links> = ({navLinks}) => {
                             </ListItem>
                         </Link>
                     ))}
+                    {isLoggedIn && (
+                        <Link to="/logout" className={classes.linkText} key="Logout">
+                            <ListItem button>
+                                <ListItemText primary="Odhlásit se"/>
+                            </ListItem>
+                        </Link>
+                    )}
                 </List>
             </Drawer>
         </>

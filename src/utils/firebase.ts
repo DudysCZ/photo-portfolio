@@ -85,9 +85,9 @@ export const useLoggedInUser = () => {
   return user;
 };
 
-// Sign up handler
-export const signUp = (email: string, password: string) =>
-  firebase.auth().createUserWithEmailAndPassword(email, password);
+// // Sign up handler
+// export const signUp = (email: string, password: string) =>
+//   firebase.auth().createUserWithEmailAndPassword(email, password);
 
 // Sign in handler
 export const signIn = (email: string, password: string) =>
