@@ -43,7 +43,7 @@ const MenuDrawer: FC<Links> = ({navLinks}) => {
             <Drawer anchor="right" open={state} onClose={() => setState(false)}>
                 <List component="nav" onClick={() => setState(false)}>
                     {navLinks.map(({ title, path }) => (
-                        <Link to={path} className={classes.linkText} key={title}>
+                        <Link to={path} className={classes.linkText} key={path}>
                             <ListItem button>
                                 <ListItemText primary={title} />
                             </ListItem>

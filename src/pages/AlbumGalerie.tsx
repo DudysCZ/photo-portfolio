@@ -34,7 +34,7 @@ function getImagesToShow(album : Album | undefined, photos : Photo[]) : Img[] {
 
 const AlbumGalerie: FC = () => {
 
-  const params = useParams<AlbumRouteParams>();  
+  const params = useParams<AlbumRouteParams>();
 
   const [error, setError] = useState<string>();
   const [album, setAlbum] = useState<Album>();
@@ -45,7 +45,7 @@ const AlbumGalerie: FC = () => {
     albumsCollection.where("ref", "==", params.id).limit(1)
       .get()
       .then(response => setAlbum(response.docs[0].data()))
-      .catch(err => setError(err.message));       
+      .catch(err => setError(err.message));
 
   }, [params]);
 
@@ -53,12 +53,12 @@ const AlbumGalerie: FC = () => {
     photosCollection.where("album", "==", album?.id ?? '').orderBy("position")
       .get()
       .then(response => setPhotos(response.docs.map(d => d.data())))
-      .catch(err => setError(err.message));       
+      .catch(err => setError(err.message));
 
     }, [album]);
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} justify={"center"}>
       <AlbumMenu />
       <Grid item xs={12}>
         {error && (

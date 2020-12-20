@@ -1,20 +1,37 @@
 import React, { FC } from 'react';
 
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import {Card, CardActionArea, CardMedia} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 800,
+    },
+    media: {
+        height: "calc(100vh - 250px)",
+        backgroundPosition: "top",
+    },
+});
 
 const Domu: FC = () => {
+    const classes = useStyles();
+
     return (
-        <Grid container wrap="wrap" spacing={3}>
-            <Grid item xs={12}>
-                <Typography variant="h2" gutterBottom>
-                    Portfolio<br />Milan Przybyla
-                </Typography>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography variant="body1" gutterBottom>
-                    Vítejte na mých stránkách!
-                </Typography>
+        <Grid container spacing={3} justify="center">
+            <Grid item xs={12} className={classes.root}>
+                <Card>
+                    <CardActionArea>
+                        <Link to="/o_mne">
+                            <CardMedia
+                                className={classes.media}
+                                image={process.env.PUBLIC_URL + "/front1.png"}
+                                title="Titulni obrazek"
+                            />
+                        </Link>
+                    </CardActionArea>
+                </Card>
             </Grid>
         </Grid>
     )
