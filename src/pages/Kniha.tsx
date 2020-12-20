@@ -39,11 +39,15 @@ const Kniha: FC = () => {
     const handleSubmit = async () => {
         try {
             // await postsCollection.add({ - NEFUNGUJE!
-            await firebase.firestore().collection('posts').add({
-                author: name,
-                content: newPost,
-                date: timestampNow()
-            });
+            if (name.length > 0 && newPost.length > 0){
+                await firebase.firestore().collection('posts').add({
+                    author: name,
+                    content: newPost,
+                    date: timestampNow()
+                });
+                setName('');
+                setNewPost('');
+            }
         } catch (err) {
             setError(err.message);
         }
@@ -102,6 +106,7 @@ const Kniha: FC = () => {
                             Přidat příspěvek
                         </Typography>
                         <TextField
+                            required
                             label="Jméno"
                             name="jméno"
                             fullWidth
@@ -111,6 +116,7 @@ const Kniha: FC = () => {
                             onChange={e => setName(e.target.value)}
                         />
                         <TextField
+                            required
                             label="Příspěvek"
                             name="příspěvek"
                             fullWidth
