@@ -12,6 +12,7 @@ import AlbumGalerie from './pages/AlbumGalerie';
 import Kniha from './pages/Kniha';
 import Import from './pages/Import';
 import Login from './pages/Login';
+import Logout from "./pages/Logout";
 import Nenalezeno from './pages/Nenalezeno';
 
 import './App.css';
@@ -47,7 +48,8 @@ const App: FC = () => {
                 <Route path="/galerie/:id" exact component={AlbumGalerie} />
                 <Route path="/kniha" exact component={Kniha} />
                 <Route path="/import" exact component={Import} />
-                <Route path="/login" exact component={Login}/>
+                <Route path="/login" exact component={Login} />
+                <Route path="/logout" exact component={Logout} />
                 <Route component={Nenalezeno} />
               </Switch>
             </Container>

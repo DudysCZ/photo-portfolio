@@ -15,13 +15,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import MenuDrawer from "./MenuDrawer";
 import {KeyboardArrowUp} from "@material-ui/icons";
 import ScrollToHandler from "../ScrollToHandler";
+import {useLoggedInUser} from "../../utils/firebase";
 
 const navLinks = [
     // { title: `Úvodní stránka`, path: `/` },
     { title: `O mně`, path: `/o_mne` },
     { title: `Fotogalerie`, path: `/galerie/portret` },
     { title: `Návštěvní kniha`, path: `/kniha` },
-    { title: `Logout`, path: `/logout` },
 ]
 
 
@@ -49,6 +49,8 @@ const Header = () => {
 
     const trigger = useScrollTrigger();
 
+    const isLoggedIn = useLoggedInUser();
+
     return (
         <AppBar position={"static"} color={"transparent"} elevation={0}>
             <Toolbar id="back-to-top-anchor" className={classes.toolbar}>
@@ -71,10 +73,17 @@ const Header = () => {
                                     {navLinks.map(({ title, path }) => (
                                         <Link to={path} className={classes.linkText} key={title}>
                                             <ListItem button>
-                                                <ListItemText primary={title} />
+                                                <ListItemText primary={title}/>
                                             </ListItem>
                                         </Link>
                                     ))}
+                                    {isLoggedIn && (
+                                        <Link to="/logout" className={classes.linkText} key="Logout">
+                                            <ListItem button>
+                                                <ListItemText primary="Odhlásit se"/>
+                                            </ListItem>
+                                        </Link>
+                                    )}
                                 </List>
                             </Grid>
                         </Hidden>
