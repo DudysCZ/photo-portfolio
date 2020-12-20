@@ -14,6 +14,7 @@ import firebase from "firebase";
 import PostComponent from "../components/Post";
 import {Add} from "@material-ui/icons";
 import ScrollToHandler from "../components/ScrollToHandler";
+import { useLoggedInUser } from "../utils/firebase";
 
 const Kniha: FC = () => {
     const [error, setError] = useState<string>();
@@ -22,6 +23,8 @@ const Kniha: FC = () => {
 
     const [name, setName] = useState('');
     const [newPost, setNewPost] = useState('');
+
+    const user = useLoggedInUser();
 
     useEffect(() => {
         const unsubscribe = postsCollection.onSnapshot(
@@ -46,6 +49,24 @@ const Kniha: FC = () => {
         }
     }
 
+    const handleDelete = async () => {
+        try {
+            let dates: string[] = [];
+
+            await firebase.firestore().collection('posts').get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    dates.push(doc.id)
+                })
+            });
+
+            dates.forEach(id => {
+                firebase.firestore().collection('posts').doc(id).delete()
+            })
+        } catch (err) {
+            setError(err.message);
+        }
+    }
+
     return (
         <Grid container wrap="wrap" spacing={3}>
             <Grid item xs={12}>
@@ -60,6 +81,11 @@ const Kniha: FC = () => {
                     </Typography>
                 )}
                 <Card>
+                    <CardActions>
+                        {
+                            user && <Button size="large" color="primary" onClick={handleDelete}>Odstranit záznamy</Button>
+                        }
+                    </CardActions>
                     <CardContent>
                         <List>
                             {posts.map((post, i) => (
@@ -96,6 +122,9 @@ const Kniha: FC = () => {
                     </CardContent>
                     <CardActions>
                         <Button size="large" color="primary" onClick={handleSubmit}>Odeslat</Button>
+                        {/*{*/}
+                        {/*    user !== null && <Button size="large" color="primary" onClick={handleDelete}>Odstranit záznamy</Button>*/}
+                        {/*}*/}
                     </CardActions>
                 </Card>
                 <ScrollToHandler selector={"#addNewPostContainer"} position={"right"}>
