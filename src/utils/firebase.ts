@@ -58,13 +58,12 @@ export type Post = {
   content: string;
   author: string;
   date: firebase.firestore.Timestamp;
+  id: string;
 };
 
 export const postsCollection = db.collection(
     'posts',
-).orderBy('date', 'desc').limit(100) as firebase.firestore.CollectionReference<Post>;
-
-
+) as firebase.firestore.CollectionReference<Post>;
 
 // Helper to get current time in Timestamp
 export const timestampNow = firebase.firestore.Timestamp.now;

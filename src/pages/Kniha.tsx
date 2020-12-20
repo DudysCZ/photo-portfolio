@@ -27,23 +27,22 @@ const Kniha: FC = () => {
     const user = useLoggedInUser();
 
     useEffect(() => {
-        const unsubscribe = postsCollection.onSnapshot(
-            snapshot => {
-                setPosts(snapshot.docs.map(doc => doc.data()));
-            },
-            err => setError(err.message),
-        );
-        return () => unsubscribe();
-    }, []);
+        postsCollection.orderBy("date")
+          .get()
+          .then(response => setPosts(response.docs.map(d => d.data())))
+          .catch(err => setError(err.message));       
+  
+        }, [posts]);
 
     const handleSubmit = async () => {
         try {
-            // await postsCollection.add({ - NEFUNGUJE!
             if (name.length > 0 && newPost.length > 0){
-                await firebase.firestore().collection('posts').add({
+                const id = postsCollection.doc().id;
+                await postsCollection.doc(id).set({
                     author: name,
                     content: newPost,
-                    date: timestampNow()
+                    date: timestampNow(),
+                    id: id
                 });
                 setName('');
                 setNewPost('');
