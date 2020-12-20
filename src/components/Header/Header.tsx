@@ -21,6 +21,7 @@ const navLinks = [
     { title: `O mně`, path: `/o_mne` },
     { title: `Fotogalerie`, path: `/galerie/portret` },
     { title: `Návštěvní kniha`, path: `/kniha` },
+    { title: `Logout`, path: `/logout` },
 ]
 
 
