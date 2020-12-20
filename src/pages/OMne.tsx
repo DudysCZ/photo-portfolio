@@ -12,7 +12,7 @@ const OMne: FC = () => {
         </Typography>
       </Grid>
         <Grid item xs={12}>            
-          <img src={process.env.PUBLIC_URL + '/photos/o_mne.jpg'} alt='O mně' />            
+          <img src={process.env.PUBLIC_URL + "/OMne.png"} alt="O mně" />
         </Grid>
         <Grid item xs={12}>
             <Typography variant="body1" gutterBottom align="justify">
