@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 
-import { signIn, signUp, useLoggedInUser } from '../utils/firebase';
+import { signIn, useLoggedInUser } from '../utils/firebase';
 
 const Login: FC = () => {
   const [user, setUser] = useState('');
@@ -54,20 +54,6 @@ const Login: FC = () => {
         )}
       </CardContent>
       <CardActions>
-        <Button
-          variant="text"
-          size="large"
-          color="primary"
-          onClick={async () => {
-            try {
-              await signUp(user, password);
-            } catch (err) {
-              setError(err.message);
-            }
-          }}
-        >
-          Vytvořit účet
-        </Button>
         <Button
           variant="text"
           size="large"
