@@ -27,7 +27,7 @@ const Kniha: FC = () => {
     const user = useLoggedInUser();
 
     useEffect(() => {
-        postsCollection.orderBy("date")
+        postsCollection.orderBy("date", "desc")
           .get()
           .then(response => setPosts(response.docs.map(d => d.data())))
           .catch(err => setError(err.message));       
@@ -127,9 +127,6 @@ const Kniha: FC = () => {
                     </CardContent>
                     <CardActions>
                         <Button size="large" color="primary" onClick={handleSubmit}>Odeslat</Button>
-                        {/*{*/}
-                        {/*    user !== null && <Button size="large" color="primary" onClick={handleDelete}>Odstranit záznamy</Button>*/}
-                        {/*}*/}
                     </CardActions>
                 </Card>
                 <ScrollToHandler selector={"#addNewPostContainer"} position={"right"}>
